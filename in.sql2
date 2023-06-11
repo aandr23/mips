@@ -1,4 +1,4 @@
-# langevin thermostat (w/o abp), atom_style dipole, damp=100
+# input file for langevin/abp thermostat, atom_style dipole
 atom_modify map array
 
 dimension 2
@@ -20,7 +20,8 @@ neigh_modify every 1 delay 0 check yes
 
 timestep 0.005
 
-fix 1 all langevin 0.05 0.05 100 12581
+#fix 1 all langevin/abp 0.05 0.05 100 12581 0.001 1 2
+fix 1 all langevin/abp 0.05 0.05 100 12581 1e-4 1. 2
 fix 2 all nve
 fix 3 all enforce2d
 
