@@ -11,15 +11,16 @@ atom_style dipole
 boundary p p p
 pair_style mie/cut 1
 
-read_data init_config198.txt
+#read_data init_config114.411404108.txt
+read_data init_config114.411404108_10000particles.txt
 Reading data file ...
-  orthogonal box = (-99.000000 -99.000000 -19.800000) to (99.000000 99.000000 19.800000)
+  orthogonal box = (-57.205700 -57.205700 -11.441100) to (57.205700 57.205700 11.441100)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   10000 atoms
   reading velocities ...
   10000 velocities
-  read_data CPU = 0.108 seconds
+  read_data CPU = 0.054 seconds
 
 #  dump initial config
 reset_timestep 0
@@ -32,7 +33,7 @@ neigh_modify every 1 delay 0 check yes
 timestep 0.005
 
 #fix 1 all langevin/abp 0.05 0.05 100 12581 0.001 1 2
-fix 1 all langevin/abp 0.05 0.05 100 12581 1e-4 1. 2
+fix 1 all langevin/abp 0.05 0.05 100 12581 0.1 1. 2
 fix 2 all nve
 fix 3 all enforce2d
 
@@ -51,43 +52,43 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 1.2
   ghost atom cutoff = 1.2
-  binsize = 0.6, bins = 330 330 66
+  binsize = 0.6, bins = 191 191 39
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair mie/cut, perpetual
       attributes: half, newton on
       pair build: half/bin/atomonly/newton
       stencil: half/bin/2d
       bin: standard
-Per MPI rank memory allocation (min/avg/max) = 6.069 | 6.069 | 6.069 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 5.809 | 5.809 | 5.809 Mbytes
 Step Temp E_pair E_mol TotEng Press 
        0            0            0            0            0            0 
-  100000  0.049526999 -0.0055962212            0  0.043925825  0.018627642 
-Loop time of 246.295 on 1 procs for 100000 steps with 10000 atoms
+  100000   0.14582282 -0.083968489            0  0.061839748   0.70218805 
+Loop time of 277.021 on 1 procs for 100000 steps with 10000 atoms
 
-Performance: 175399.686 tau/day, 406.018 timesteps/s
+Performance: 155944.843 tau/day, 360.983 timesteps/s
 99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 8.5341     | 8.5341     | 8.5341     |   0.0 |  3.47
-Neigh   | 3.1432     | 3.1432     | 3.1432     |   0.0 |  1.28
-Comm    | 0.96983    | 0.96983    | 0.96983    |   0.0 |  0.39
-Output  | 0.35468    | 0.35468    | 0.35468    |   0.0 |  0.14
-Modify  | 229.68     | 229.68     | 229.68     |   0.0 | 93.25
-Other   |            | 3.613      |            |       |  1.47
+Pair    | 30.761     | 30.761     | 30.761     |   0.0 | 11.10
+Neigh   | 9.5936     | 9.5936     | 9.5936     |   0.0 |  3.46
+Comm    | 1.5289     | 1.5289     | 1.5289     |   0.0 |  0.55
+Output  | 0.31965    | 0.31965    | 0.31965    |   0.0 |  0.12
+Modify  | 230.93     | 230.93     | 230.93     |   0.0 | 83.36
+Other   |            | 3.884      |            |       |  1.40
 
 Nlocal:        10000.0 ave       10000 max       10000 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        251.000 ave         251 max         251 min
+Nghost:        433.000 ave         433 max         433 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:        2331.00 ave        2331 max        2331 min
+Neighs:        14936.0 ave       14936 max       14936 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 2331
-Ave neighs/atom = 0.23310000
-Neighbor list builds = 4448
+Total # of neighbors = 14936
+Ave neighs/atom = 1.4936000
+Neighbor list builds = 7635
 Dangerous builds = 0
 
 unfix 1
-Total wall time: 0:04:06
+Total wall time: 0:04:37

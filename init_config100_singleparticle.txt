@@ -1,0 +1,20 @@
+#  2D Square lattice input datafile with a single particle
+
+1 atoms
+1 atom types
+
+-50 50 xlo xhi
+-50 50 ylo yhi
+-10 10 zlo zhi
+
+Masses
+
+1 1.
+
+Atoms
+
+1 1 0 0.0 0.0 0.0 0.0 0.0 0.0 0 0 0
+
+Velocities
+
+1 0.0 0.0 0.0
