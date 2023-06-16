@@ -1,0 +1,5 @@
+LAMMPS (29 Sep 2021 - Update 3)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+ERROR: Cannot open file init_config114.411404108_10000particles.txt: No such file or directory (src/read_data.cpp:312)
+Last command: read_data init_config114.411404108_10000particles.txt

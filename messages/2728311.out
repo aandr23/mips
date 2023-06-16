@@ -1,18 +1,6 @@
 LAMMPS (29 Sep 2021 - Update 3)
 OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
   using 1 OpenMP thread(s) per MPI task
-# input file for langevin/abp thermostat, atom_style dipole
-atom_modify map array
-
-dimension 2
-
-units lj
-atom_style dipole
-boundary p p p
-pair_style mie/cut 1
-
-#read_data init_config114.411404108.txt
-read_data /home2/aandr/mips/init_config114.411404108_10000particles.txt
 Reading data file ...
   orthogonal box = (-57.205700 -57.205700 -11.441100) to (57.205700 57.205700 11.441100)
   1 by 1 by 1 MPI processor grid
@@ -20,37 +8,7 @@ Reading data file ...
   10000 atoms
   reading velocities ...
   10000 velocities
-  read_data CPU = 0.054 seconds
-
-#  dump initial config
-reset_timestep 0
-
-pair_coeff 1 1 1. 0.9785720621 64. 32.
-
-neighbor 0.2 bin
-neigh_modify every 1 delay 0 check yes
-
-timestep 0.005
-
-#fix 1 all langevin/abp 0.05 0.05 100 12581 0.001 1 2
-fix 1 all langevin/abp 0.05 0.05 100 12581 0.1 1. 2
-fix 2 all nve
-fix 3 all enforce2d
-
-# print.stepsxl has higher numbers than print.steps, for running longer simulations
-# print.stepsxl goes from 10^0 to 10^7, print.steps only goes up to 10^5
-#variable f file /home2/aandr/mips/print.stepsxl
-variable f file /home2/aandr/print.steps
-variable s equal next(f)
-
-
-dump pos1 all custom 100 /home2/aandr/mips/position/*.txt x y
-dump_modify pos1 every v_s first yes
-dump_modify pos1 sort id
-
-
-#changed this line after switching to print.stepsxl
-run 100000 upto
+  read_data CPU = 0.023 seconds
 Neighbor list info ...
   update every 1 steps, delay 0 steps, check yes
   max neighbors/atom: 2000, page size: 100000
@@ -63,24 +21,28 @@ Neighbor list info ...
       pair build: half/bin/atomonly/newton
       stencil: half/bin/2d
       bin: standard
+Setting up Verlet run ...
+  Unit style    : lj
+  Current step  : 0
+  Time step     : 0.005
 Per MPI rank memory allocation (min/avg/max) = 5.809 | 5.809 | 5.809 Mbytes
 Step Temp E_pair E_mol TotEng Press 
        0            0            0            0            0            0 
   100000   0.14582282 -0.083968489            0  0.061839748   0.70218805 
-Loop time of 279.884 on 1 procs for 100000 steps with 10000 atoms
+Loop time of 228.313 on 1 procs for 100000 steps with 10000 atoms
 
-Performance: 154349.881 tau/day, 357.291 timesteps/s
+Performance: 189214.219 tau/day, 437.996 timesteps/s
 99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 30.778     | 30.778     | 30.778     |   0.0 | 11.00
-Neigh   | 9.6493     | 9.6493     | 9.6493     |   0.0 |  3.45
-Comm    | 1.5327     | 1.5327     | 1.5327     |   0.0 |  0.55
-Output  | 0.4341     | 0.4341     | 0.4341     |   0.0 |  0.16
-Modify  | 233.59     | 233.59     | 233.59     |   0.0 | 83.46
-Other   |            | 3.899      |            |       |  1.39
+Pair    | 24.879     | 24.879     | 24.879     |   0.0 | 10.90
+Neigh   | 7.8186     | 7.8186     | 7.8186     |   0.0 |  3.42
+Comm    | 1.2357     | 1.2357     | 1.2357     |   0.0 |  0.54
+Output  | 0.30856    | 0.30856    | 0.30856    |   0.0 |  0.14
+Modify  | 190.81     | 190.81     | 190.81     |   0.0 | 83.58
+Other   |            | 3.258      |            |       |  1.43
 
 Nlocal:        10000.0 ave       10000 max       10000 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -93,7 +55,4 @@ Total # of neighbors = 14936
 Ave neighs/atom = 1.4936000
 Neighbor list builds = 7635
 Dangerous builds = 0
-#run 10000000 upto
-
-unfix 1
-Total wall time: 0:04:39
+Total wall time: 0:03:48
